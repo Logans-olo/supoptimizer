@@ -1,0 +1,58 @@
+
+\section{Background}
+
+Currently, there are a variety of tools that are designed for Superoptimization (see: https://www.cs.cornell.edu/courses/cs6120/2022sp/blog/superoptimizer/ for motivation). Souper and STOKE are both online tools. However, they are used an indepedent, post-hoc optimizers rather than inline improvements to speed. \\ They search for a global minimum of operations that yield an structurally equivalent, which naturally takes hours, sometimes days. 
+
+
+\section{Research Statement} 
+
+The goal of this project is to prove that under specific circumstances (integer, loop \& memory-free). 
+\begin{itemize}
+	\item A restriction of the search space via relaxation, and subsequent search under that space is faster
+	\item There exist sections of code where a superoptimization in the above manner will result in faster compilation + execution
+\end{itemize}
+
+Min: $\sum$ Operations 
+
+Subject to: 
+
+\begin{itemize} 
+	\item An operation is a binary variable (It either is or isn't included)
+	\item There are no operational differences between the optimized and original code (Does it lead to the same result?)
+	\item Optimization of ops cannot reverse order of nodes (I.E. if A->B->C, we cannot optimize to B->A->C)
+\end{itemize}
+
+We are going to attempt to rewrite this problem as a relaxation: \\
+
+Min 0 
+\\
+Subject to: 
+\begin{itemize}
+	\item All of the same rules above
+	\item Operations $\leq$ k, where k is bounded:
+	\begin{itemize}
+		\item Above by the current number of operations at optimization time
+		\item Below by the number of different valid operations \\ 
+		(I.E. we cannot reduce a Multiply and an Add to less than one of each) (yet.) \\
+	\end{itemize}
+\end{itemize}
+
+
+
+\section{First Steps}
+
+Now that the problem has been given a scope we must now give greater clarity to each of our constraints 
+\medskip 
+
+\subsection{ First DAG design choice}
+
+E-Graph-Good, and its implications on this section of the project
+\subsection{Candidate Subspace Generation}
+
+\subsection{Code Equivalency}
+Show a method
+\subsection{Complexity}
+Show why my method is faster than what actually exists out there right now
+\subsection{Naive ILP Generation}
+
+Find a way to generate an ILP from the DAG as decided upon in the first segment
